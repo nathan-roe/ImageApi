@@ -12,7 +12,7 @@ class File(models.Model):
 
     class Meta:
         abstract = True
-    # NOTE: Currently only saving cropped image file
+
     file_path = models.CharField(max_length=255, null=True, blank=True)
 
     # S3 url for front end use
