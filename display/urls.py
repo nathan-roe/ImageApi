@@ -4,5 +4,5 @@ from display.views import DisplayView
 
 
 urlpatterns = [
-    path('image/<int:id>', DisplayView.as_view(), name='team'),
+    path('image', DisplayView.as_view(), name='display'),
 ]

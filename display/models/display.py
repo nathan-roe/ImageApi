@@ -1,5 +1,5 @@
 from django.db import models
-from image import Image
+from display.models.image import Image
 
 class Display(models.Model):
     uid = models.CharField(max_length=255)

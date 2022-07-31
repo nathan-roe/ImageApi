@@ -1,9 +1,8 @@
 from django.db import models
 from django.utils.functional import cached_property
 
-from file_storage.functions import delete_file, upload_file
-
-from util.functions.imagefunctions import b64_to_fileobj
+from util.functions.imagefunctions import delete_file, upload_file
+from util.functions.utilfunctions import b64_to_fileobj
 
 
 class File(models.Model):

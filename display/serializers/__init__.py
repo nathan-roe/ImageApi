@@ -1,1 +1,2 @@
-from serializers.imageserializers import ImageAllSerializer, ImagePathSerializer
+from display.serializers.imageserializers import ImageAllSerializer, ImagePathSerializer
+from display.serializers.displayserializers import DisplayAllSerializer

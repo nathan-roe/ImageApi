@@ -1,13 +1,15 @@
-import inspect
-import os
 import base64
 from io import BytesIO
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import exception_handler
-from models.tokens import ExpiringToken
+from util.models import ExpiringToken
+
+
+def get_uid(request):
+    return request.META.get('HTTP_AUTHORIZATION').split()[1]
 
 
 def token_to_uid(request):
@@ -26,17 +28,6 @@ def token_to_uid(request):
             return
     except ExpiringToken.DoesNotExist:
         return
-
-
-def get_env(env_variable):
-    """
-    Function handles getting env variables
-    """
-    try:
-        return os.environ[env_variable]
-    except KeyError:
-        error_msg = f'Set the {env_variable} environment variable'
-        raise ImproperlyConfigured(error_msg)
 
 
 # Formats B64 to a File object for s3 image CRUD

@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from file_storage.functions import upload_file
-from util.functions.imagefunctions import b64_to_fileobj
+from util.functions.imagefunctions import upload_file
+from util.functions.utilfunctions import b64_to_fileobj
 from display.models import Image
 
 
@@ -13,8 +13,7 @@ class FileSerializerMixin(metaclass=serializers.SerializerMetaclass):
         if file is None:
             raise ValueError("Context is required")
         upload_file(cleaned_data["file_path"], b64_to_fileobj(file))
-        new_s3_file = self.Meta.model.objects.create(**cleaned_data)
-        return new_s3_file
+        return self.Meta.model.objects.create(**cleaned_data)
 
     def update(self, instance, validated_data):
         if (file := self.context) is not None and 'file_path' in validated_data:
