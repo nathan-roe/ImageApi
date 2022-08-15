@@ -1,6 +1,6 @@
 from boto3 import client, resource
 from botocore.exceptions import ClientError
-from util.functions.imagefunctions import get_env
+from ImageApi.settings import get_env
 
 
 def get_resource():
